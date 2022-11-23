@@ -1,0 +1,26 @@
+<html>
+   <br>
+    <h1>Upload new File</h1>
+    {% if predicted_image_classes %}
+    {% for class in predicted_image_classes %}
+        {{ class.class }} - {{ class.value}} </br>
+    {% endfor %}
+    {% else %}
+    <form method="post" enctype="multipart/form-data">
+      <p><b>Class1:</b><br>
+      <input type="text" name="class1" size="40"> 
+      <p><b>Class2:</b><br>
+      <input type="text" name="class2" size="40"> 
+      <p><b>Class3:</b><br>
+      <input type="text" name="class3" size="40"> 
+      <p><b>Class4:</b><br>
+      <input type="text" name="class4" size="40"> 
+      <p><b>Class5:</b><br>
+      <input type="text" name="class5" size="40">  
+      <input type="file" name="file">
+      <input type="submit">
+    </form>
+    {% endif %}
+   </body>
+</html>
+

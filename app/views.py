@@ -11,12 +11,8 @@ from .model import predict
 views_bp = Blueprint('CLIP', __name__)
 
 
-@views_bp .route('/')
-def home():
-    return render_template('home.html')
 
-
-@views_bp.route('/upload', methods=['GET', 'POST'])
+@views_bp.route('/', methods=['GET', 'POST'])
 def upload_file():
     if request.method == 'POST':
         print("request data", request.data)
@@ -32,7 +28,13 @@ def upload_file():
             dir_file = os.path.join('data/uploads/', filename)
             file.save(dir_file)
             # Send uploaded image for prediction
-            predicted_image_class = predict(dir_file, classes)
-            print("predicted_image_class", predicted_image_class)
-            return json.dumps(predicted_image_class)
-    return ""
+            classes = [] 
+            classes.append(request.form['class1'])
+            classes.append(request.form['class2'])
+            classes.append(request.form['class3'])
+            classes.append(request.form['class4'])
+            classes.append(request.form['class5'])
+            predicted_image_classes = predict(dir_file, classes)
+            print("predicted_image_class", predicted_image_classes)
+            return render_template('home.html', predicted_image_classes=predicted_image_classes)
+    return render_template('home.html')

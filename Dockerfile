@@ -11,8 +11,8 @@ COPY . /app
 # Make the directory the working directory for subsequent commands
 WORKDIR /app
 
+RUN /usr/local/bin/python -m pip install --upgrade pip
 # Install from the requirements.txt we copied above
-RUN pip install torch==1.10.1
 RUN pip install -r requirements.txt
 
 # Hand everything over to the 'app' user
